@@ -1,74 +1,92 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patient Billing Data Analysis</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 40px; }
-        h1, h2 { color: #2c3e50; }
-        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-        th { background-color: #f4f4f4; }
-    </style>
-</head>
-<body>
-    <h1>📌 Patient Billing Data Analysis</h1>
-    <p>This R script processes and visualizes patient billing data by integrating information from three key tables: <strong>Patients</strong>, <strong>Visits</strong>, and <strong>Billing</strong>. The script merges datasets, extracts insights, and generates graphical representations of medical visit trends and billing activity.</p>
+# 📌 Patient Billing Data Analysis
 
-    <h2>📂 Data Sources</h2>
-    <p>The following tables serve as input data:</p>
+## 📋 Overview  
+This R script (`patientBillingTables.R`) processes and visualizes patient billing data by integrating information from three key tables: **Patients, Visits, and Billing**. The script merges datasets, extracts insights, and generates graphical representations of medical visit trends and billing activity.
 
-    <h3>📝 Billing Table</h3>
-    <table>
-        <tr><th>Column</th><th>Description</th></tr>
-        <tr><td><strong>InvoiceNum</strong></td><td>Unique identifier for an invoice</td></tr>
-        <tr><td><strong>VisitID</strong></td><td>Links to the corresponding patient visit</td></tr>
-        <tr><td><strong>InvoiceDate</strong></td><td>Date of billing</td></tr>
-        <tr><td><strong>InvoiceAmt</strong></td><td>Total invoice amount</td></tr>
-        <tr><td><strong>InvoiceItem</strong></td><td>Description of the billed service</td></tr>
-        <tr><td><strong>InvoicePaid</strong></td><td>Boolean indicating if the invoice was paid</td></tr>
-    </table>
+---
 
-    <h3>👤 Patient Table</h3>
-    <table>
-        <tr><th>Column</th><th>Description</th></tr>
-        <tr><td><strong>PatientID</strong></td><td>Unique identifier for each patient</td></tr>
-        <tr><td><strong>LastName</strong></td><td>Last name of the patient</td></tr>
-        <tr><td><strong>FirstName</strong></td><td>First name of the patient</td></tr>
-        <tr><td><strong>BirthDate</strong></td><td>Patient's birth date</td></tr>
-        <tr><td><strong>Phone</strong></td><td>Contact phone number</td></tr>
-        <tr><td><strong>Address, City, State, Zip</strong></td><td>Residential information</td></tr>
-        <tr><td><strong>Email</strong></td><td>Contact email address</td></tr>
-    </table>
+## 📂 Data Sources  
+The script relies on three key datasets:
 
-    <h3>📅 Visit Table</h3>
-    <table>
-        <tr><th>Column</th><th>Description</th></tr>
-        <tr><td><strong>VisitID</strong></td><td>Unique identifier for each visit</td></tr>
-        <tr><td><strong>PatientID</strong></td><td>References the associated patient</td></tr>
-        <tr><td><strong>VisitDate</strong></td><td>Date of the medical visit</td></tr>
-        <tr><td><strong>Reason</strong></td><td>Medical reason for the visit</td></tr>
-        <tr><td><strong>WalkIn</strong></td><td>Boolean indicating if the visit was a walk-in</td></tr>
-    </table>
+### 📝 Billing Table  
+This table contains financial data related to patient visits, tracking invoice amounts and payment statuses.
 
-    <h2>📊 Key Features</h2>
-    <ul>
-        <li><strong>Data Cleaning & Processing</strong>: Merges patient, visit, and billing data.</li>
-        <li><strong>Monthly Analysis</strong>: Extracts month names from visit dates.</li>
-        <li><strong>Data Visualization</strong>: Generates various plots using <code>ggplot2</code>.</li>
-    </ul>
+| Column       | Description                                    |
+|-------------|--------------------------------|
+| **InvoiceNum**  | Unique identifier for an invoice |
+| **VisitID**    | Links to the corresponding patient visit |
+| **InvoiceDate** | Date of billing |
+| **InvoiceAmt**  | Total invoice amount |
+| **InvoiceItem** | Description of the billed service |
+| **InvoicePaid** | Boolean indicating if the invoice was paid |
 
-    <h2>🚀 How to Use</h2>
-    <p>To execute the script:</p>
-    <ol>
-        <li>Ensure the <code>Billing.xlsx</code>, <code>Patient.xlsx</code>, and <code>Visit.xlsx</code> files are in the working directory.</li>
-        <li>Install required packages:</li>
-        <pre><code>install.packages(c("ggplot2", "dplyr", "tidyverse", "readxl", "tidyr", "tidytext"))</code></pre>
-        <li>Run the script:</li>
-    </ol>
+### 👤 Patient Table  
+The patient table stores demographic and contact information for individuals who have visited the medical facility.
 
-    <h2>📜 License</h2>
-    <p>Released under the MIT License.</p>
-</body>
-</html>
+| Column       | Description                                    |
+|-------------|--------------------------------|
+| **PatientID**  | Unique identifier for each patient |
+| **LastName**   | Last name of the patient |
+| **FirstName**  | First name of the patient |
+| **BirthDate**  | Patient's birth date |
+| **Phone**      | Contact phone number |
+| **Address, City, State, Zip** | Residential information |
+| **Email**      | Contact email address |
+
+### 📅 Visit Table  
+The visit table logs medical visits, including the reason for the visit, whether it was a walk-in, and the date of the visit.
+
+| Column       | Description                                    |
+|-------------|--------------------------------|
+| **VisitID**  | Unique identifier for each visit |
+| **PatientID**  | References the associated patient |
+| **VisitDate** | Date of the medical visit |
+| **Reason**  | Medical reason for the visit |
+| **WalkIn**  | Boolean indicating if the visit was a walk-in |
+
+---
+
+## 📊 Key Visualizations  
+Below are the key visualizations generated by the script:
+
+![reasonForVisitByMonth](https://github.com/user-attachments/assets/92d6734f-127a-4fc2-a2da-4d2b178398db)
+1. **Reason for Visit by Month** – A stacked bar chart displaying the distribution of visit reasons across different months.
+![reasonForVisitByWalkIn](https://github.com/user-attachments/assets/a1bd66af-2187-404f-a42b-673bc7c04a4a)
+2. **Reason for Visit by Walk-In Status** – A bar chart comparing visit reasons between scheduled and walk-in visits.
+![reasonForVisitByCity](https://github.com/user-attachments/assets/96d437e2-3cdb-48d8-ac01-b6ef809231f0)
+3. **Reason for Visit by City** – A stacked bar chart categorizing visit reasons by patient location.
+<img width="1106" alt="totalInvoiceAmountByReasonForVisit" src="https://github.com/user-attachments/assets/890c2074-e0db-4658-8e77-f1cd4ccc6d7e" />
+4. **Total Invoice Amount by Reason for Visit** – A grouped bar chart showing billed amounts for different visit reasons and their payment status.
+<img width="985" alt="totalInvoiceAmountPerMonth" src="https://github.com/user-attachments/assets/43cc044d-cd73-4bd1-af35-5484313df6f1" />
+5. **Total Invoice Amount Per Month** – A stacked bar chart displaying total invoice amounts by month, with a breakdown of paid vs. unpaid invoices.
+
+---
+
+## 🛠 Dependencies  
+The script uses the following R packages:
+- `ggplot2` – Data visualization  
+- `dplyr` – Data wrangling  
+- `tidyverse` – Comprehensive data science tools  
+- `readxl` – Reading Excel files  
+- `tidyr` – Data reshaping  
+- `tidytext` – Text processing  
+
+Install them using:
+```r
+install.packages(c("ggplot2", "dplyr", "tidyverse", "readxl", "tidyr", "tidytext"))
+```
+
+---
+
+## 🚀 How to Use  
+1. Place `Billing.xlsx`, `Patient.xlsx`, and `Visit.xlsx` in your working directory.  
+2. Open RStudio or an R environment.  
+3. Run the script:  
+```r
+source("patientBillingTables.R")
+```
+
+---
+
+## 📜 License  
+This project is released under the **MIT License**.
