@@ -84,7 +84,7 @@ install.packages(c("ggplot2", "dplyr", "tidyverse", "readxl", "tidyr", "tidytext
 ## 🚀 How to Use  
 1. Place `Billing.xlsx`, `Patient.xlsx`, and `Visit.xlsx` in your working directory.  
 2. Open RStudio or an R environment.  
-3. Run the script:  
+3. Run the script.
 
 ---
 
