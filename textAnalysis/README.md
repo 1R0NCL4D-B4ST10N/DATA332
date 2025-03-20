@@ -34,7 +34,7 @@ Two sentiment lexicons were applied:
 ### 1. **Sentiment Bing**
 - **Purpose:** Shows the overall distribution of positive and negative sentiment in consumer complaints.
 - **Value:** Helps identify trends in consumer dissatisfaction and satisfaction.
-![bing_sentiment](https://github.com/user-attachments/assets/9757f3eb-5224-41c2-b4ff-f5b6e286aeeb)
+![bing_sentiment](https://github.com/user-attachments/assets/d0326ae6-b415-4449-8aee-be65208c77ed)
 
 ### 2. **Word Cloud of Issues**
 - **Purpose:** Highlights the most frequently reported issues in consumer complaints.
