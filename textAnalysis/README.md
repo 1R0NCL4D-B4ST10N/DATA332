@@ -69,7 +69,7 @@ The **R script** follows these steps:
 ## How to Run the Analysis
 1. Install required libraries:
    ```r
-   install.packages(c("tidyverse", "tidytext", "ggplot2", "wordcloud", "RColorBrewer"))
+   install.packages(c("tidyverse", "tidytext", "ggplot2", "wordcloud", "RColorBrewer", "scales"))
    ```
 2. Set your working directory in the R script:
    ```r
