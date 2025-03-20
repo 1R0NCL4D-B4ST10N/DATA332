@@ -31,7 +31,7 @@ Two sentiment lexicons were applied:
 - Implemented using `tidytext::get_sentiments("nrc")`.
 
 ## Data Visualizations
-### 1. **Sentiment Analysis Distribution**
+### 1. **Sentiment Bing**
 - **Purpose:** Shows the overall distribution of positive and negative sentiment in consumer complaints.
 - **Value:** Helps identify trends in consumer dissatisfaction and satisfaction.
 ![bing_sentiment](https://github.com/user-attachments/assets/9757f3eb-5224-41c2-b4ff-f5b6e286aeeb)
@@ -39,13 +39,13 @@ Two sentiment lexicons were applied:
 ### 2. **Word Cloud of Issues**
 - **Purpose:** Highlights the most frequently reported issues in consumer complaints.
 - **Value:** Provides insights into which topics consumers report the most, helping prioritize areas of concern.
-![issue_word_cloud](https://github.com/user-attachments/assets/9ceba3d8-84de-4d6f-8702-5f92754717a4)
+![wordcloud](https://github.com/user-attachments/assets/fa0a5cde-2626-4d69-9d4c-bf8b2c601adc)
 
-### 3. **Sentiment by Product Category**
-- **Purpose:** Groups sentiment scores by product type to understand which products receive the most positive or negative feedback.
-- **Why use a pivot table?** Aggregates sentiment scores across different product categories.
-- **Value:** Helps determine which products cause the most frustration or satisfaction among consumers.
-![nrc_sentiment](https://github.com/user-attachments/assets/dec4f754-2b9f-4e8f-b4fa-40cee782f3a9)
+### 3. **Sentiment NRC**
+- **Purpose:** Shows more specific distribution of sentiments in consumer complaints
+- **Value:** Helps identify more specific sentiments.
+![nrc_sentiment](https://github.com/user-attachments/assets/3e4994dd-c6e5-44ed-8732-4ba76bb48f39)
+
 
 ## R Script Documentation
 The **R script** follows these steps:
@@ -80,7 +80,7 @@ The **R script** follows these steps:
    ```r
    source("textAnalysis.R")
    ```
-5. View generated charts in the `images/` folder or to the side.
+5. View charts in the `images/` folder or to the side.
 
 ---
 *Note: The project structure and requirements may change based on refinements.*
