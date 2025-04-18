@@ -2,25 +2,32 @@ library(shiny)
 library(ggplot2)
 library(DT)
 library(dplyr)
+library(readxl)
+library(RCurl)
+library(bslib)
 
-rm(list = ls())
 
-setwd('C:/Users/thewi/Documents/rstudio/carTracker')
+data_url <- getURL("https://raw.githubusercontent.com/1R0NCL4D-B4ST10N/DATA332/main/carTracker/carTracker.csv")
 
-# Load the data
-dataset <- read.csv("carTracker.csv")
+dataset <- read.csv(text = data_url)
+
 dataset <- dataset[, 1:7]  # Drop unnamed column if it exists
 dataset <- dataset %>% filter(!is.na(MPH))  # Ensure MPH is valid
 column_names <- colnames(dataset)
 
 ui <- fluidPage(
+  theme = bs_theme(
+    version = 5,
+    bootswatch = "darkly"
+  ),
+  
   titlePanel("Car Tracking Analysis Dashboard"),
   
   tabsetPanel(
     tabPanel("Data Explorer",
              sidebarLayout(
                sidebarPanel(
-                 selectInput("X", "Choose X", column_names, "SpeedLimit"),
+                 selectInput("X", "Choose X", column_names, "Color"),
                  selectInput("Y", "Choose Y", column_names, "MPH"),
                  selectInput("Splitby", "Split By", column_names, "Student")
                ),
@@ -53,13 +60,24 @@ ui <- fluidPage(
 )
 
 server <- function(input, output) {
+  dark_theme <- theme_minimal(base_family = "sans", base_size = 14) +
+    theme(
+      panel.background = element_rect(fill = "#222222", color = NA),
+      plot.background = element_rect(fill = "#222222", color = NA),
+      text = element_text(color = "white"),
+      axis.text = element_text(color = "white"),
+      axis.title = element_text(color = "white"),
+      legend.text = element_text(color = "white"),
+      legend.title = element_text(color = "white")
+    )
   
   # Original scatter plot
   output$plot_01 <- renderPlot({
     ggplot(dataset, aes_string(x = input$X, y = input$Y, colour = input$Splitby)) +
       geom_point(size = 3, alpha = 0.7) +
       theme_minimal() +
-      labs(title = "Data Explorer: Custom Scatter Plot")
+      labs(title = "Data Explorer") +
+      dark_theme
   })
   
   # Bar chart of car colors by student
@@ -67,15 +85,17 @@ server <- function(input, output) {
     ggplot(dataset, aes(x = Color, fill = Student)) +
       geom_bar(position = "dodge") +
       theme_minimal() +
-      labs(title = "Car Colors by Student", x = "Color", y = "Count")
+      labs(title = "Car Colors by Student", x = "Color", y = "Count") +
+      dark_theme
   })
   
   # Histogram of MPH
   output$speed_hist <- renderPlot({
     ggplot(dataset, aes(x = MPH)) +
-      geom_histogram(binwidth = 2, fill = "steelblue", color = "black") +
+      geom_histogram(binwidth = 2, fill = "#738595", color = "black") +
       theme_minimal() +
-      labs(title = "Distribution of Vehicle Speeds (MPH)", x = "Speed (MPH)", y = "Frequency")
+      labs(title = "Distribution of Vehicle Speeds (MPH)", x = "Speed (MPH)", y = "Frequency") +
+      dark_theme
   })
   
   # Boxplot of MPH by Student
@@ -83,21 +103,25 @@ server <- function(input, output) {
     ggplot(dataset, aes(x = Student, y = MPH, fill = Student)) +
       geom_boxplot() +
       theme_minimal() +
-      labs(title = "Speed by Student", x = "Student", y = "MPH")
+      labs(title = "Speed by Student", x = "Student", y = "MPH") +
+      dark_theme
   })
   
   # Summary stats
   output$stats_output <- renderPrint({
     stats <- dataset$MPH
-    summary_list <- list(
-      "Minimum MPH" = min(stats),
-      "Maximum MPH" = max(stats),
-      "Mean MPH" = round(mean(stats), 2),
-      "Median MPH" = median(stats),
-      "Standard Deviation" = round(sd(stats), 2),
-      "Total Vehicles Recorded" = length(stats)
-    )
-    print(summary_list)
+    
+    # Identify rows for min and max
+    min_row <- dataset[which.min(dataset$MPH), ]
+    max_row <- dataset[which.max(dataset$MPH), ]
+    
+    # Build output with full sentences
+    cat(paste0("There are ", length(stats), " vehicle observations recorded.\n"))
+    cat(paste0("The minimum recorded speed is ", min(stats), " MPH, observed on a ", min_row$Color, " car.\n"))
+    cat(paste0("The maximum recorded speed is ", max(stats), " MPH, observed on a ", max_row$Color, " car.\n"))
+    cat(paste0("The average speed is ", round(mean(stats), 2), " MPH.\n"))
+    cat(paste0("The median speed is ", median(stats), " MPH.\n"))
+    cat(paste0("The standard deviation of speed is ", round(sd(stats), 2), " MPH.\n"))
   })
   
   # Full data table
