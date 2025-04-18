@@ -60,24 +60,13 @@ ui <- fluidPage(
 )
 
 server <- function(input, output) {
-  dark_theme <- theme_minimal(base_family = "sans", base_size = 14) +
-    theme(
-      panel.background = element_rect(fill = "#222222", color = NA),
-      plot.background = element_rect(fill = "#222222", color = NA),
-      text = element_text(color = "white"),
-      axis.text = element_text(color = "white"),
-      axis.title = element_text(color = "white"),
-      legend.text = element_text(color = "white"),
-      legend.title = element_text(color = "white")
-    )
   
   # Original scatter plot
   output$plot_01 <- renderPlot({
     ggplot(dataset, aes_string(x = input$X, y = input$Y, colour = input$Splitby)) +
       geom_point(size = 3, alpha = 0.7) +
       theme_minimal() +
-      labs(title = "Data Explorer") +
-      dark_theme
+      labs(title = "Data Explorer")
   })
   
   # Bar chart of car colors by student
@@ -85,8 +74,7 @@ server <- function(input, output) {
     ggplot(dataset, aes(x = Color, fill = Student)) +
       geom_bar(position = "dodge") +
       theme_minimal() +
-      labs(title = "Car Colors by Student", x = "Color", y = "Count") +
-      dark_theme
+      labs(title = "Car Colors by Student", x = "Color", y = "Count")
   })
   
   # Histogram of MPH
@@ -94,8 +82,7 @@ server <- function(input, output) {
     ggplot(dataset, aes(x = MPH)) +
       geom_histogram(binwidth = 2, fill = "#738595", color = "black") +
       theme_minimal() +
-      labs(title = "Distribution of Vehicle Speeds (MPH)", x = "Speed (MPH)", y = "Frequency") +
-      dark_theme
+      labs(title = "Distribution of Vehicle Speeds (MPH)", x = "Speed (MPH)", y = "Frequency")
   })
   
   # Boxplot of MPH by Student
@@ -103,8 +90,7 @@ server <- function(input, output) {
     ggplot(dataset, aes(x = Student, y = MPH, fill = Student)) +
       geom_boxplot() +
       theme_minimal() +
-      labs(title = "Speed by Student", x = "Student", y = "MPH") +
-      dark_theme
+      labs(title = "Speed by Student", x = "Student", y = "MPH")
   })
   
   # Summary stats
