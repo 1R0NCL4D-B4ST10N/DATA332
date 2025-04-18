@@ -8,7 +8,7 @@ This Shiny app presents an analysis of vehicle speed data collected by two stude
 
 - **Source**: The dataset is pulled dynamically from [GitHub](https://github.com/1R0NCL4D-B4ST10N/DATA332/tree/main/carTracker) (this GitHub) using the `RCurl` package.
 - **Columns Used**:
-  - `TimeTracked`: Date/time of observation
+  - `TimeTracked`: Date/time of observation. Grant recorded times in the afternoon/evening, whilst Xander recorded times at noon.
   - `SpeedLimit`: Posted speed limit at the site
   - `MPH`: Actual measured speed
   - `Color`: Color of the car
