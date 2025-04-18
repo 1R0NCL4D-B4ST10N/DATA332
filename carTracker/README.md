@@ -30,23 +30,21 @@ Each student independently recorded vehicle speeds at different times of the day
 This scatter plot is completely customizeable by the user, allowing them to look at the data in any way they wish. It is by default set to Color by MPH, split by Student.
 
 ### 2. Car Colors by Student
-![Car Colors by Student](![colorByStudent](https://github.com/user-attachments/assets/a3809f57-43ac-4d50-909a-1785884bc4dc)
-)
+![colorByStudent](https://github.com/user-attachments/assets/a3809f57-43ac-4d50-909a-1785884bc4dc)
 
 This chart displays the distribution of car colors as recorded by each student. Grant observed more black and red vehicles, while Xander noted a large spike in white vehicles. This could be due to different collection times or directional traffic flow.
 
 ---
 
 ### 3. Distribution of Vehicle Speeds (MPH)
-![Speed Histogram](![speedHistogram](https://github.com/user-attachments/assets/1585b7af-a9ca-46b3-b4f9-ab551a72a90f)
-)
+![speedHistogram](https://github.com/user-attachments/assets/1585b7af-a9ca-46b3-b4f9-ab551a72a90f)
 
 This histogram shows the overall spread of vehicle speeds. Most vehicles were recorded between 27–35 MPH, with very few extreme outliers. The shape suggests a roughly normal distribution with a slight right skew.
 
 ---
 
 ### 4. Speed by Student
-![Speed by Student](![speedByStudent](https://github.com/user-attachments/assets/db0e116e-4eb3-47ad-b3a2-dc3a8b8752f4))
+![speedByStudent](https://github.com/user-attachments/assets/db0e116e-4eb3-47ad-b3a2-dc3a8b8752f4)
 
 
 The boxplot compares speed distributions for each student. Grant observed a wider range with multiple low outliers, while Xander recorded more upper-range speeds, including the highest single value. This may reflect time-of-day differences or local traffic conditions.
