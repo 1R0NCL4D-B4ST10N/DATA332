@@ -6,7 +6,6 @@ library(lubridate)
 library(tidyr)
 library(leaflet)
 library(plotly)
-library(RCurl)
 library(reshape2)
 
 # Load Data
@@ -38,7 +37,8 @@ ui <- fluidPage(
   
   sidebarLayout(
     sidebarPanel(
-      helpText("Explore Uber pickup trends, heatmaps, and geospatial maps.")
+      helpText("Explore Uber pickup trends, heatmaps, and geospatial maps."),
+      helpText("GitHub Link: https://github.com/1R0NCL4D-B4ST10N/DATA332/tree/main/uberAssignment")
     ),
     
     mainPanel(
